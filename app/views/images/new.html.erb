@@ -1,0 +1,7 @@
+Add image
+
+<%= simple_form_for @image do |f| %>
+  <%= f.input :gadget_id, as: :hidden, :input_html => { :value => @gadget } %>
+  <%= f.input :picture, as: :file %>
+  <%= f.button :submit %>
+<% end %>

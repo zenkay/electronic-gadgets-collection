@@ -1,7 +1,21 @@
-<%= link_to "Logout", destroy_user_session_path, method: :delete %>
+<h1>Your gadgets</h1>
 
-<h1>Gadget list</h1>
+<% @gadgets.each do |gadget| %>
+  
+  <h2><%= gadget.name %></h2>
+  <p><%= gadget.description %></p>
+  <p>
+    <%= link_to "Add Photo", new_image_path(gadget: gadget) %> | 
+    <%= link_to "Edit Gadget", edit_gadget_path(gadget) %> | 
+    <%= link_to "Remove Gadget", gadget_path(gadget), method: :delete %>
+  </p>
 
-<%= link_to "New", new_gadgets_path %>
+  <% gadget.images.each do |image| %>
+    <div class="image-container">
+      <%= image_tag image.picture.url, {class: "thumb"} %>
+      <%= link_to "Remove", image_path(image), method: :delete %>
+    </div>
+  <% end %>
+  <div class="clear"></div>
 
-
+<% end %>
